@@ -5,6 +5,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * In-memory repository for bank accounts.
+ *
+ * <p>
+ * Assumptions:
+ * <ul>
+ *     <li>Account numbers are non-empty strings./li>
+ *     <li>Balance may never be negative, maximum balance is {@link Long#MAX_VALUE}.</li>
+ * </ul>
  */
 public class AccountRepository {
 
@@ -33,6 +40,7 @@ public class AccountRepository {
      */
     public void create(final String accountNo, final long balance) {
         validateAccountNo(accountNo);
+        validateBalance(balance);
         if (accounts.containsKey(accountNo)) {
             throw new RepositoryException("Account No. already exists.");
         }
@@ -48,6 +56,7 @@ public class AccountRepository {
      */
     public void update(final String accountNo, final long newBalance) {
         validateAccountNo(accountNo);
+        validateBalance(newBalance);
         if (!accounts.containsKey(accountNo)) {
             throw new RepositoryException("Unknown account provided.");
         }
@@ -58,6 +67,11 @@ public class AccountRepository {
         if (accountNo == null || accountNo.trim().isEmpty()) {
             throw new RepositoryException("Invalid account number provided.");
         }
+    }
 
+    private void validateBalance(final long balance) {
+        if (balance < 0) {
+            throw new RepositoryException("Balance may not be negative.");
+        }
     }
 }

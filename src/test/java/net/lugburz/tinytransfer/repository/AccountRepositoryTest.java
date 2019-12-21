@@ -56,6 +56,11 @@ class AccountRepositoryTest {
     }
 
     @Test
+    public void create_onNegativeBalance_shouldThrowRepositoryException() {
+        assertThrows(RepositoryException.class, () -> sut.create(ACCOUNT_NO_1, -1));
+    }
+
+    @Test
     public void create_onNewAccountNo_shouldCreateAccount() {
         sut.create("789", 42);
 
@@ -75,6 +80,11 @@ class AccountRepositoryTest {
     @Test
     public void update_onBlankAccountNo_shouldThrowRepositoryException() {
         assertThrows(RepositoryException.class, () -> sut.update(" ", 0));
+    }
+
+    @Test
+    public void update_onNegativeBalance_shouldThrowRepositoryException() {
+        assertThrows(RepositoryException.class, () -> sut.update(" ", -1));
     }
 
     @Test
