@@ -1,5 +1,6 @@
 package net.lugburz.tinytransfer.repository;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -10,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Assumptions:
  * <ul>
  *     <li>Account numbers are non-empty strings./li>
- *     <li>Balance may never be negative, maximum balance is {@link Long#MAX_VALUE}.</li>
+ *     <li>Balance may never be negative.</li>
  * </ul>
  */
 public class AccountRepository {
@@ -38,7 +39,7 @@ public class AccountRepository {
      * @param balance   the starting balance
      * @throws RepositoryException if the provided account number is invalid or belongs to an existing account
      */
-    public void create(final String accountNo, final long balance) {
+    public void create(final String accountNo, final BigDecimal balance) {
         validateAccountNo(accountNo);
         validateBalance(balance);
         if (accounts.containsKey(accountNo)) {
@@ -54,7 +55,7 @@ public class AccountRepository {
      * @param newBalance the new balance to store
      * @throws RepositoryException if the provided account number is invalid or is unknown
      */
-    public void update(final String accountNo, final long newBalance) {
+    public void update(final String accountNo, final BigDecimal newBalance) {
         validateAccountNo(accountNo);
         validateBalance(newBalance);
         if (!accounts.containsKey(accountNo)) {
@@ -69,8 +70,8 @@ public class AccountRepository {
         }
     }
 
-    private void validateBalance(final long balance) {
-        if (balance < 0) {
+    private void validateBalance(final BigDecimal balance) {
+        if (balance.compareTo(BigDecimal.ZERO) < 0) {
             throw new RepositoryException("Balance may not be negative.");
         }
     }
