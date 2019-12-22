@@ -31,68 +31,42 @@ class AccountRepositoryTest {
     }
 
     @Test
-    public void find_onUnknownAccount_shouldThrowRepositoryException() {
-        assertThrows(RepositoryException.class, () -> sut.find("789"));
+    public void find_onUnknownAccount_shouldThrowAccountException() {
+        assertThrows(AccountException.class, () -> sut.find("789"));
     }
 
     @Test
     public void find_onExistingAccount_shouldReturnAccount() {
         final Account acc = sut.find(ACCOUNT_NO_1);
 
-        assertThat(acc).isEqualTo(new Account(ACCOUNT_NO_1, BigDecimal.valueOf(100)));
+        assertThat(acc.getAccountNo()).isEqualTo(ACCOUNT_NO_1);
+        assertThat(acc.getBalance()).isEqualTo(ACCOUNT_BALANCE_1);
     }
 
     @Test
-    public void create_onExistingAccountNo_shouldThrowRepositoryException() {
-        assertThrows(RepositoryException.class, () -> sut.create(ACCOUNT_NO_1, BigDecimal.valueOf(0)));
+    public void create_onExistingAccountNo_shouldThrowAccountException() {
+        assertThrows(AccountException.class, () -> sut.create(ACCOUNT_NO_1, BigDecimal.valueOf(0)));
     }
 
     @Test
-    public void create_onNullAccountNo_shouldThrowRepositoryException() {
-        assertThrows(RepositoryException.class, () -> sut.create(null, BigDecimal.valueOf(0)));
+    public void create_onNullAccountNo_shouldThrowAccountException() {
+        assertThrows(AccountException.class, () -> sut.create(null, BigDecimal.valueOf(0)));
     }
 
     @Test
-    public void create_onBlankAccountNo_shouldThrowRepositoryException() {
-        assertThrows(RepositoryException.class, () -> sut.create(" ", BigDecimal.valueOf(0)));
+    public void create_onBlankAccountNo_shouldThrowAccountException() {
+        assertThrows(AccountException.class, () -> sut.create(" ", BigDecimal.valueOf(0)));
     }
 
     @Test
-    public void create_onNegativeBalance_shouldThrowRepositoryException() {
-        assertThrows(RepositoryException.class, () -> sut.create(ACCOUNT_NO_1, BigDecimal.valueOf(-1)));
+    public void create_onNegativeBalance_shouldThrowAccountException() {
+        assertThrows(AccountException.class, () -> sut.create(ACCOUNT_NO_1, BigDecimal.valueOf(-1)));
     }
 
     @Test
     public void create_onNewAccountNo_shouldCreateAccount() {
         sut.create("789", BigDecimal.valueOf(42));
 
-        assertThat(sut.find("789")).isEqualTo(new Account("789", BigDecimal.valueOf(42)));
-    }
-
-    @Test
-    public void update_onUnknownAccount_shouldThrowRepositoryException() {
-        assertThrows(RepositoryException.class, () -> sut.update("789", BigDecimal.valueOf(0)));
-    }
-
-    @Test
-    public void update_onNullAccountNo_shouldThrowRepositoryException() {
-        assertThrows(RepositoryException.class, () -> sut.update(null, BigDecimal.valueOf(0)));
-    }
-
-    @Test
-    public void update_onBlankAccountNo_shouldThrowRepositoryException() {
-        assertThrows(RepositoryException.class, () -> sut.update(" ", BigDecimal.valueOf(0)));
-    }
-
-    @Test
-    public void update_onNegativeBalance_shouldThrowRepositoryException() {
-        assertThrows(RepositoryException.class, () -> sut.update(" ", BigDecimal.valueOf(-1)));
-    }
-
-    @Test
-    public void update_onExistingAccount_shouldUpdateBalance() {
-        sut.update(ACCOUNT_NO_1, BigDecimal.valueOf(42.042));
-
-        assertThat(sut.find("123")).isEqualTo(new Account(ACCOUNT_NO_1, BigDecimal.valueOf(42.042)));
+        assertThat(sut.find("789").getBalance()).isEqualTo(BigDecimal.valueOf(42));
     }
 }

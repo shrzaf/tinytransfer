@@ -23,56 +23,42 @@ public class AccountRepository {
      *
      * @param accountNo the account number
      * @return an instance of {@link Account}
-     * @throws RepositoryException if the provided account number is unknown
+     * @throws AccountException if the provided account number is unknown
      */
     public Account find(final String accountNo) {
         if (!accounts.containsKey(accountNo)) {
-            throw new RepositoryException("Unknown account provided");
+            throw new AccountException("Unknown account provided");
         }
         return accounts.get(accountNo);
     }
 
     /**
-     * Creates a new account.
+     * Creates a new account in a thread-safe manner.
      *
      * @param accountNo the account number, may not be null
-     * @param balance   the starting balance
-     * @throws RepositoryException if the provided account number is invalid or belongs to an existing account
+     * @param balance   the starting balance, may not be negative
+     * @throws AccountException if the provided account number is invalid or belongs to an existing account
+     *                             or if the provided balance is negative
      */
-    public void create(final String accountNo, final BigDecimal balance) {
+    public synchronized void create(final String accountNo, final BigDecimal balance) {
         validateAccountNo(accountNo);
         validateBalance(balance);
         if (accounts.containsKey(accountNo)) {
-            throw new RepositoryException("Account No. already exists.");
+            throw new AccountException("Account No. already exists.");
         }
         accounts.put(accountNo, new Account(accountNo, balance));
     }
 
-    /**
-     * Updates the balance of an existing account.
-     *
-     * @param accountNo  the account number, may not be null
-     * @param newBalance the new balance to store
-     * @throws RepositoryException if the provided account number is invalid or is unknown
-     */
-    public void update(final String accountNo, final BigDecimal newBalance) {
-        validateAccountNo(accountNo);
-        validateBalance(newBalance);
-        if (!accounts.containsKey(accountNo)) {
-            throw new RepositoryException("Unknown account provided.");
-        }
-        accounts.put(accountNo, new Account(accountNo, newBalance));
-    }
 
     private void validateAccountNo(final String accountNo) {
         if (accountNo == null || accountNo.trim().isEmpty()) {
-            throw new RepositoryException("Invalid account number provided.");
+            throw new AccountException("Invalid account number provided.");
         }
     }
 
     private void validateBalance(final BigDecimal balance) {
         if (balance.compareTo(BigDecimal.ZERO) < 0) {
-            throw new RepositoryException("Balance may not be negative.");
+            throw new AccountException("Balance may not be negative.");
         }
     }
 }
