@@ -1,6 +1,6 @@
 package net.lugburz.tinytransfer.transfer;
 
-import net.lugburz.tinytransfer.repository.AccountRepository;
+import net.lugburz.tinytransfer.account.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

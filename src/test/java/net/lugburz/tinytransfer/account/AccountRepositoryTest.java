@@ -1,4 +1,4 @@
-package net.lugburz.tinytransfer.repository;
+package net.lugburz.tinytransfer.account;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

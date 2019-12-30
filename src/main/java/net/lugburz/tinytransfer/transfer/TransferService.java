@@ -1,8 +1,8 @@
 package net.lugburz.tinytransfer.transfer;
 
-import net.lugburz.tinytransfer.repository.Account;
-import net.lugburz.tinytransfer.repository.AccountException;
-import net.lugburz.tinytransfer.repository.AccountRepository;
+import net.lugburz.tinytransfer.account.Account;
+import net.lugburz.tinytransfer.account.AccountException;
+import net.lugburz.tinytransfer.account.AccountRepository;
 
 import java.math.BigDecimal;
 

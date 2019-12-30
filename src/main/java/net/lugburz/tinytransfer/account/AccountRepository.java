@@ -1,4 +1,4 @@
-package net.lugburz.tinytransfer.repository;
+package net.lugburz.tinytransfer.account;
 
 import java.math.BigDecimal;
 import java.util.Map;

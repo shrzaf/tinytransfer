@@ -1,4 +1,4 @@
-package net.lugburz.tinytransfer.repository;
+package net.lugburz.tinytransfer.account;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

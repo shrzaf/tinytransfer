@@ -4,7 +4,7 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import net.lugburz.tinytransfer.api.BankingResource;
-import net.lugburz.tinytransfer.repository.AccountRepository;
+import net.lugburz.tinytransfer.account.AccountRepository;
 
 public class TinyTransferApplication extends Application<TinyTransferConfiguration> {
 

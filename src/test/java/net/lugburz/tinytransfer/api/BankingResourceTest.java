@@ -5,7 +5,7 @@ import io.dropwizard.testing.junit5.DropwizardAppExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import net.lugburz.tinytransfer.TinyTransferApplication;
 import net.lugburz.tinytransfer.TinyTransferConfiguration;
-import net.lugburz.tinytransfer.repository.Account;
+import net.lugburz.tinytransfer.account.Account;
 import org.junit.ClassRule;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,8 +1,8 @@
 package net.lugburz.tinytransfer.api;
 
-import net.lugburz.tinytransfer.repository.Account;
-import net.lugburz.tinytransfer.repository.AccountException;
-import net.lugburz.tinytransfer.repository.AccountRepository;
+import net.lugburz.tinytransfer.account.Account;
+import net.lugburz.tinytransfer.account.AccountException;
+import net.lugburz.tinytransfer.account.AccountRepository;
 import net.lugburz.tinytransfer.transfer.TransferException;
 import net.lugburz.tinytransfer.transfer.TransferService;
 import org.slf4j.Logger;
@@ -36,7 +36,7 @@ public final class BankingResource {
      * Returns a single account.
      *
      * @param accountNo the account number
-     * @return HTTP 200 with a single {@link net.lugburz.tinytransfer.repository.Account} on success,
+     * @return HTTP 200 with a single {@link net.lugburz.tinytransfer.account.Account} on success,
      * HTTP 404 on unknown account number, HTTP 500 on internal errors
      */
     @GET

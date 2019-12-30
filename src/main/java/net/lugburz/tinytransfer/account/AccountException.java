@@ -1,4 +1,4 @@
-package net.lugburz.tinytransfer.repository;
+package net.lugburz.tinytransfer.account;
 
 /**
  * Thrown on attempts to create or manipulate an account instance with invalid field values.
