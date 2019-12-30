@@ -40,7 +40,7 @@ public class BankingResourceTest {
 
     @AfterEach
     public void reset() {
-        client.target(getPath("/accounts/reset")).request().get();
+        client.target(getPath("/accounts/reset")).request().post(null);
     }
 
     @Test

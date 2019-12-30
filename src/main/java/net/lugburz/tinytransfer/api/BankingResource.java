@@ -59,7 +59,8 @@ public final class BankingResource {
      * Creates a new account.
      *
      * @param account JSON representation of the account data. Example: {"accountNo": "123", balance: 10.42}
-     * @return HTTP 200 on successful creation, HTTP 400 on invalid parameters, HTTP 500 on internal errors
+     * @return HTTP 200 on successful creation, HTTP 400 on failure due to bad parameters,
+     * HTTP 422 on invalid parameters, HTTP 500 on internal errors
      */
     @POST
     @Path("/accounts")
@@ -81,7 +82,7 @@ public final class BankingResource {
     /**
      * Resets the internal data store by deleting all stored accounts.
      */
-    @GET
+    @POST
     @Path("/accounts/reset")
     public Response reset() {
         repository.clear();
@@ -94,7 +95,8 @@ public final class BankingResource {
      * @param request the transfer request containing the fields {@code senderAccNo}, {@code receiverAccNo} and
      *                {@code balance}. The balance must be a non-negative number. Example:
      *                {"senderAccNo": "123", "receiverAccNo": "456", balance: 10.42}
-     * @return HTTP 200 on successful transfer, HTTP 400 on failure due to bad parameters, HTTP 500 on internal errors
+     * @return HTTP 200 on successful transfer, HTTP 400 on failure due to bad parameters,
+     * HTTP 422 on invalid parameters, HTTP 500 on internal errors
      */
     @POST
     @Path("/transfer")
