@@ -56,6 +56,17 @@ public class AccountRepository {
         accounts.clear();
     }
 
+    /**
+     * Determines data consistency by checking whether there is any negative account balance in the store.
+     * <p>
+     * Used for health-check purposes.
+     *
+     * @return true if no account has a negative balance, false otherwise
+     */
+    public boolean isConsistent() {
+        return accounts.values().stream().noneMatch(acc -> acc.getBalance().compareTo(BigDecimal.ZERO) < 0);
+    }
+
 
     private void validateAccountNo(final String accountNo) {
         if (accountNo == null || accountNo.trim().isEmpty()) {
