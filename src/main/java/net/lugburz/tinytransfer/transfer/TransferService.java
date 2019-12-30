@@ -36,7 +36,7 @@ public class TransferService {
             adjustBalances(amount, sender, receiver);
 
         } catch (final AccountException exception) {
-            throw new TransferException("Money transfer failed.", exception);
+            throw new TransferException("Money transfer failed: " + exception.getMessage(), exception);
         }
     }
 

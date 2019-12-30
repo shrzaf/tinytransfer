@@ -1,8 +1,9 @@
 package net.lugburz.tinytransfer.repository;
 
-import lombok.AccessLevel;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -10,9 +11,14 @@ import java.math.BigDecimal;
  * Thread-safe implementation of a minimal model for a bank account.
  */
 @Getter
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor
+@NoArgsConstructor
 public final class Account {
-    private final String accountNo;
+
+    @JsonProperty
+    private String accountNo;
+
+    @JsonProperty
     private BigDecimal balance;
 
     /**

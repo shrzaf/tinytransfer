@@ -5,7 +5,7 @@ package net.lugburz.tinytransfer.repository;
  */
 public class AccountException extends RuntimeException {
 
-    AccountException(final String message)  {
+    public AccountException(final String message)  {
         super(message);
     }
 }

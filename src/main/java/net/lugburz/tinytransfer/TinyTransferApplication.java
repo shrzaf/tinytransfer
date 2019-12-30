@@ -3,6 +3,8 @@ package net.lugburz.tinytransfer;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import net.lugburz.tinytransfer.api.BankingResource;
+import net.lugburz.tinytransfer.repository.AccountRepository;
 
 public class TinyTransferApplication extends Application<TinyTransferConfiguration> {
 
@@ -21,9 +23,11 @@ public class TinyTransferApplication extends Application<TinyTransferConfigurati
     }
 
     @Override
-    public void run(final TinyTransferConfiguration configuration,
-                    final Environment environment) {
-        // TODO: implement application
+    public void run(TinyTransferConfiguration configuration,
+                    Environment environment) {
+        final AccountRepository repository = new AccountRepository();
+        final BankingResource resource = new BankingResource(repository);
+        environment.jersey().register(resource);
     }
 
 }

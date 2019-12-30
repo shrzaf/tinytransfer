@@ -38,7 +38,7 @@ public class AccountRepository {
      * @param accountNo the account number, may not be null
      * @param balance   the starting balance, may not be negative
      * @throws AccountException if the provided account number is invalid or belongs to an existing account
-     *                             or if the provided balance is negative
+     *                          or if the provided balance is negative
      */
     public synchronized void create(final String accountNo, final BigDecimal balance) {
         validateAccountNo(accountNo);
@@ -47,6 +47,13 @@ public class AccountRepository {
             throw new AccountException("Account No. already exists.");
         }
         accounts.put(accountNo, new Account(accountNo, balance));
+    }
+
+    /**
+     * Clears the repository.
+     */
+    public synchronized void clear() {
+        accounts.clear();
     }
 
 
