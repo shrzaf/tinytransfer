@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 /**
  * Provides functionality to transfer money between accounts.
  */
-public class TransferService {
+public final class TransferService {
 
     private final AccountRepository repository;
 

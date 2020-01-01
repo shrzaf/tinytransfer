@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *     <li>Balance may never be negative.</li>
  * </ul>
  */
-public class AccountRepository {
+public final class AccountRepository {
 
     private final Map<String, Account> accounts = new ConcurrentHashMap<>();
 

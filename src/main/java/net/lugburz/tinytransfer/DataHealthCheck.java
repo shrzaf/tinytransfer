@@ -7,7 +7,7 @@ import net.lugburz.tinytransfer.account.AccountRepository;
 /**
  * Health check for in-memory data store.
  */
-public class DataHealthCheck extends HealthCheck {
+public final class DataHealthCheck extends HealthCheck {
     private final AccountRepository repository;
 
     public DataHealthCheck(final AccountRepository repository) {
