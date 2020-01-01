@@ -36,7 +36,9 @@ Creates a new account.
 
 Example:
 
+```
 POST http://localhost:8080/accounts
+```
 
 Request body:
 
@@ -51,13 +53,21 @@ Request body:
 
 Resets the internal data store by deleting all stored accounts.
 
+Example:
+
+```
+POST http://localhost:8080/accounts/reset
+```
+
 **POST /transfer**
 
 Transfers an amount between two accounts.
 
 Example:
 
+```
 POST http://localhost:8080/transfer
+```
 
 Request body:
 
