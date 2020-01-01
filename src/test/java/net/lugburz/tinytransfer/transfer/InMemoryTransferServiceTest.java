@@ -16,22 +16,22 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 /**
- * Tests for {@link TransferService}.
+ * Tests for {@link InMemoryTransferService}.
  */
-class TransferServiceTest {
+class InMemoryTransferServiceTest {
 
     private static final String ACC_NO_1 = "123";
     private static final String ACC_NO_2 = "456";
 
     private AccountRepository repo;
-    private TransferService sut;
+    private InMemoryTransferService sut;
 
     @BeforeEach
     public void setup() {
         repo = new AccountRepository();
         repo.create(ACC_NO_1, BigDecimal.valueOf(10));
         repo.create(ACC_NO_2, BigDecimal.valueOf(10));
-        sut = new TransferService(repo);
+        sut = new InMemoryTransferService(repo);
     }
 
     @Test

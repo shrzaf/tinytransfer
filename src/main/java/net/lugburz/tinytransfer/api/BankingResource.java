@@ -4,6 +4,7 @@ import net.lugburz.tinytransfer.account.Account;
 import net.lugburz.tinytransfer.account.AccountException;
 import net.lugburz.tinytransfer.account.AccountRepository;
 import net.lugburz.tinytransfer.transfer.TransferException;
+import net.lugburz.tinytransfer.transfer.InMemoryTransferService;
 import net.lugburz.tinytransfer.transfer.TransferService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,7 @@ public final class BankingResource {
 
     public BankingResource(final AccountRepository repository) {
         this.repository = repository;
-        this.transferService = new TransferService(repository);
+        this.transferService = new InMemoryTransferService(repository);
     }
 
     /**

@@ -6,7 +6,7 @@ import net.lugburz.tinytransfer.account.AccountRepository;
 import net.lugburz.tinytransfer.api.BankingResource;
 
 /**
- * Main class of the application.
+ * Entry point of the application.
  */
 public class TinyTransferApplication extends Application<TinyTransferConfiguration> {
 
